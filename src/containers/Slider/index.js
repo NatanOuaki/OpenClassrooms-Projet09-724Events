@@ -14,7 +14,7 @@ const Slider = () => {
   const nextCard = () => {
     setTimeout(
       // 4e modification ajout du -1 pour enlever "l'image blanche" 
-      () => setIndex(index < byDateDesc.length -1 ? index + 1 : 0),
+      () => setIndex(index < byDateDesc?.length -1 ? index + 1 : 0),
       5000
     );
   };
@@ -24,9 +24,8 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+        <div key={event.title}>
           <div
-            key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -44,16 +43,17 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+                  key={`${event.title} - ${radioIdx}`}
                   type="radio"
                   name="radio-button"
                   // 7e modification changement de idx en index car idx n'existe pas 
                   checked={index === radioIdx}
+                  readOnly
                 />
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

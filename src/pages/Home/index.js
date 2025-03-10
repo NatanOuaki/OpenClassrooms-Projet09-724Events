@@ -119,6 +119,7 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre dernière prestation</h3>
         <EventCard
+          style={{cursor :"default"}}
           imageSrc={last?.cover}
           title={last?.title}
           date={new Date(last?.date)}
